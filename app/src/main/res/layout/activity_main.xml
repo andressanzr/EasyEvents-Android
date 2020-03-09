@@ -1,19 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/fotoLogo"
+                android:layout_width="438dp"
+                android:layout_height="347dp"
+                android:background="#ffff"
+                android:src="@drawable/logo">
+
+            </ImageView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#C0DD98"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="¿Tienes un evento?"
+                    android:textAlignment="center"
+                    android:textColor="#070707"
+                    android:textSize="24dp">
+
+                </TextView>
+
+                <Button
+                    android:id="@+id/botonCrear"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/colorPrimaryLight"
+                    android:text="Crear evento"
+                    android:textColor="@color/colorAccent">
+
+                </Button>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#E0B3E7"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="¿Ya tienes un evento y quieres modificarlo?"
+                    android:textAlignment="center"
+                    android:textColor="#070707"
+                    android:textSize="24dp">
+
+                </TextView>
+
+                <Button
+                    android:id="@+id/botonModificar"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/colorPrimaryLight"
+                    android:text="Modificar evento"
+                    android:textColor="@color/colorAccent">
+
+                </Button>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00BCD4"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Soy invitado"
+                    android:textAlignment="center"
+                    android:textColor="#070707"
+                    android:textSize="24dp">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Por favor introduce el ID del evento"
+                    android:textAlignment="center"
+                    android:textColor="#070707"
+                    android:textSize="20dp">
+
+                </TextView>
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </EditText>
+
+                <Button
+                    android:id="@+id/botonInvitado"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/colorPrimaryLight"
+                    android:text="Ir a mi evento"
+                    android:textColor="@color/colorAccent">
+
+                </Button>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</RelativeLayout>
