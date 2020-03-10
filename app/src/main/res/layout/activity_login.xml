@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inicia sesión o registrate"
+                android:textAlignment="center"
+                android:textColor="#DDCE2929"
+                android:textSize="40dp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Introduce tu email:"
+                android:textColor="#070707"
+                android:textSize="24dp">
+
+            </TextView>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </EditText>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Introduce tu password:"
+                android:textColor="#070707"
+                android:textSize="24dp"></TextView>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></EditText>
+
+            <Button
+                android:id="@+id/botonLogin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/colorPrimaryLight"
+                android:text="Login"
+                android:textColor="@color/colorAccent"
+                android:textSize="30dp">
+
+            </Button>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="50dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Introduce tu nombre:"
+                    android:textColor="#070707"
+                    android:textSize="24dp"></TextView>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></EditText>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Introduce número de telefono:"
+                    android:textColor="#070707"
+                    android:textSize="24dp"></TextView>
+
+
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="phone" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Introduce tu email:"
+                    android:textColor="#070707"
+                    android:textSize="24dp">
+
+                </TextView>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </EditText>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Introduce tu password:"
+                    android:textColor="#070707"
+                    android:textSize="24dp"></TextView>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></EditText>
+
+                <Button
+                    android:id="@+id/botonRegistro"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorPrimaryLight"
+                    android:text="Registrarse"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="30dp">
+
+                </Button>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
