@@ -16,8 +16,8 @@
 
             <ImageView
                 android:id="@+id/fotoLogo"
-                android:layout_width="438dp"
-                android:layout_height="347dp"
+                android:layout_width="411dp"
+                android:layout_height="390dp"
                 android:background="#ffff"
                 android:src="@drawable/logo">
 
@@ -26,17 +26,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#C0DD98"
                 android:orientation="vertical"
+                android:background="#C0DD98"
                 android:padding="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="¿Tienes un evento?"
-                    android:textAlignment="center"
+                    android:textSize="24dp"
                     android:textColor="#070707"
-                    android:textSize="24dp">
+                    android:textAlignment="center">
 
                 </TextView>
 
@@ -44,10 +44,9 @@
                     android:id="@+id/botonCrear"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:backgroundTint="@color/colorPrimaryLight"
                     android:text="Crear evento"
-                    android:textColor="@color/colorAccent">
+                    android:layout_gravity="center"
+                    android:background="@drawable/boton_redondo">
 
                 </Button>
 
@@ -56,17 +55,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#E0B3E7"
                 android:orientation="vertical"
+                android:background="#E0B3E7"
                 android:padding="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="¿Ya tienes un evento y quieres modificarlo?"
-                    android:textAlignment="center"
+                    android:textSize="24dp"
                     android:textColor="#070707"
-                    android:textSize="24dp">
+                    android:textAlignment="center">
 
                 </TextView>
 
@@ -74,10 +73,9 @@
                     android:id="@+id/botonModificar"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:backgroundTint="@color/colorPrimaryLight"
                     android:text="Modificar evento"
-                    android:textColor="@color/colorAccent">
+                    android:layout_gravity="center"
+                    android:background="@drawable/boton_redondo">
 
                 </Button>
 
@@ -86,16 +84,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#00BCD4"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="#00BCD4">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Soy invitado"
-                    android:textAlignment="center"
+                    android:textSize="24dp"
                     android:textColor="#070707"
-                    android:textSize="24dp">
+                    android:textAlignment="center">
 
                 </TextView>
 
@@ -103,9 +101,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Por favor introduce el ID del evento"
-                    android:textAlignment="center"
+                    android:textSize="20dp"
                     android:textColor="#070707"
-                    android:textSize="20dp">
+                    android:textAlignment="center">
 
                 </TextView>
 
@@ -115,17 +113,6 @@
                     android:layout_height="match_parent">
 
                 </EditText>
-
-                <Button
-                    android:id="@+id/botonInvitado"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:backgroundTint="@color/colorPrimaryLight"
-                    android:text="Ir a mi evento"
-                    android:textColor="@color/colorAccent">
-
-                </Button>
 
             </LinearLayout>
 
