@@ -16,10 +16,12 @@
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FinaldelEvento"></activity>
+        <activity android:name=".FinaldelEvento"/>
         <activity
             android:name=".ActivityMaps"
-            android:parentActivityName=".EventoCreando"></activity>
+            android:parentActivityName=".EventoCreando"/>
+        <activity android:name=".Registrar"/>
+        <activity android:name=".PortadaLogin" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -36,6 +38,7 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".EventoCreando" />
+        <activity android:name=".CreandoEvento" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

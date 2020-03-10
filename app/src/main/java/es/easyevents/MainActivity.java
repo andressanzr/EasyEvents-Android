@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         crear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent crear = new Intent(MainActivity.this, Login.class);
+                Intent crear = new Intent(MainActivity.this, PortadaLogin.class);
                 startActivity(crear);
             }
         });
