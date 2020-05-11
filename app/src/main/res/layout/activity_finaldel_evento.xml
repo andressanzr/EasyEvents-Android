@@ -1,9 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FinaldelEvento">
+    android:orientation="vertical"
+    tools:ignore="MissingConstraints"
+    tools:context=".Activity.FinaldelEvento">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Tu evento se ha creado"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30dp"
+        android:gravity="center_horizontal" />
+
+
+    <TextView
+        android:id="@+id/codigo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#EE710A"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:textAlignment="center"
+        android:textSize="50dp"
+        android:gravity="center_horizontal" />
+    <Button
+        android:id="@+id/genera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="#fffdf9"
+        android:text="Generar el ID de mi evento"
+        android:background="@drawable/boton_redondo">
+
+    </Button>
+
+        <TextView
+            android:id="@+id/nombreEvent"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="28dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textColor="#070707"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/mensajeEvent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="28dp"
+            android:textColor="#070707"
+            android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/nombrePersonas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:textColor="#070707"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/fechaEvent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#070707"
+        android:layout_marginLeft="28dp"
+        android:layout_marginBottom="10dp"
+
+        android:layout_marginRight="28dp"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/horaEvento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:textColor="#070707"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/lugarEvent"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
+        android:textColor="#070707"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:textSize="20dp" />
+
+
+    <Button
+        android:id="@+id/guardarDatos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="30dp"
+        android:textColor="#fffdf9"
+        android:text="GUARDAR"
+        android:background="@drawable/boton_redondo"
+        >
+
+    </Button>
+
+
+
+
+
+</LinearLayout>

@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Registrar">
+    tools:context=".Activity.Registrar">
     <ImageView
         android:id="@+id/imageViewFondo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/babyshower"
+        android:src="@drawable/celebracionfondo"
         android:scaleType="centerCrop" />
 
 
@@ -56,7 +56,9 @@
             android:layout_gravity="center"
             android:layout_marginLeft="28dp"
             android:layout_marginRight="28dp"
+            android:inputType="phone"
             android:background="@drawable/border"
+            android:maxLength="9"
             android:ems="10"
             android:textColor="#fff"
             android:layout_marginTop="20dp"
@@ -105,6 +107,30 @@
             android:background="@drawable/border"
             android:inputType="textPassword"></EditText>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <CheckBox
+                android:id="@+id/chek"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:text="He leído y acepto la "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:id="@+id/privacidad"
+                android:textColor="#0099cc"
+
+                android:text="Politica de Privacidad"/>
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/botonCrearCuenta"
