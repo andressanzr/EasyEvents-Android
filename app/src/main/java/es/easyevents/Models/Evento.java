@@ -4,115 +4,106 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Evento  implements Serializable {
-    @SerializedName("codigo")
+    @SerializedName("type")
     @Expose
-    private int codigo;
-    @SerializedName("imagen")
+    private String type;
+    @SerializedName("name")
     @Expose
-    private String imagen;
-    @SerializedName("titulo")
+    private String name;
+    @SerializedName("message")
     @Expose
-    private String titulo;
-    @SerializedName("descripcion")
+    private String message;
+    @SerializedName("publicIdCode")
     @Expose
-    private String descripcion;
-    @SerializedName("anfitrion")
+    private int publicIdCode;
+    @SerializedName("date")
     @Expose
-    private String anfitrion;
-    @SerializedName("fecha")
+    private Date date;
+    @SerializedName("dateCreated")
     @Expose
-    private String fecha;
-    @SerializedName("hora")
+    private Date dateCreated;
+    @SerializedName("place")
     @Expose
-    private String hora;
-
-    @SerializedName("direccion")
+    private String place;
+    @SerializedName("hostName")
     @Expose
-    private String direccion;
+    private String hostName;
+    @SerializedName("guestsEmails")
+    @Expose
+    private String[] guestsEmails;
 
-    public Evento() {
+    public String getType() {
+        return type;
     }
 
-    public Evento(int codigo, String imagen, String titulo, String descripcion, String anfitrion, String fecha, String hora, String direccion) {
-        this.codigo = codigo;
-        this.titulo = titulo;
-        this.anfitrion = anfitrion;
-        this.imagen = imagen;
-        this.fecha = fecha;
-        this.hora = hora;
-        this.descripcion = descripcion;
-        this.direccion = direccion;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public int getCodigo() {
-        return codigo;
+    public String getName() {
+        return name;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getMessage() {
+        return message;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public String getAnfitrion() {
-        return anfitrion;
+    public int getPublicIdCode() {
+        return publicIdCode;
     }
 
-    public void setAnfitrion(String anfitrion) {
-        this.anfitrion = anfitrion;
+    public void setPublicIdCode(int publicIdCode) {
+        this.publicIdCode = publicIdCode;
     }
 
-    public String getImagen() {
-        return imagen;
+    public Date getDate() {
+        return date;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public String getFecha() {
-        return fecha;
+    public Date getDateCreated() {
+        return dateCreated;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
-    public String getHora() {
-        return hora;
+    public String getPlace() {
+        return place;
     }
 
-    public void setHora(String hora) {
-        this.hora = hora;
+    public void setPlace(String place) {
+        this.place = place;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getHostName() {
+        return hostName;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setHostName(String hostName) {
+        this.hostName = hostName;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String[] getGuestsEmails() {
+        return guestsEmails;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-    @Override
-    public String toString() {
-        return  "codigo: " + codigo +
-                ", imagen: " + imagen + ", titulo: " + titulo+ ", descripcion: " + descripcion + ", anfitrion: " + anfitrion + ", fecha: " + fecha + ", hora: " + hora +
-                ", direccion: " + direccion;
+    public void setGuestsEmails(String[] guestsEmails) {
+        this.guestsEmails = guestsEmails;
     }
 }

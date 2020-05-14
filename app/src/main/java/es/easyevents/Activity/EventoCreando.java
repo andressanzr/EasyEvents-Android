@@ -9,58 +9,57 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Random;
 
+import androidx.appcompat.app.AppCompatActivity;
+import es.easyevents.Data.ApiUtils;
+import es.easyevents.Data.MailInterface;
 import es.easyevents.R;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class EventoCreando extends AppCompatActivity {
-    static String snombreevento;
-    static String smensaevento;
-    static String snombreperson;
-    static String shoraevento;
-    static String sfecha;
-    static String slugar;
-    Button fecha, bhora;
-    EditText mfecha;
-    EditText mLugar;
-    Button mapa;
-    private Button generar;
-    private TextView idEvento;
+    private String stipoevento;
+    private String snombreevento;
+    private String smensajevento;
+    private String snombreperson;
+    private String sfechaevento;
+    private String shoraevento;
+    private String slugar;
+    private Calendar dateEvent;
+
+    private Button fecha, bhora;
+
+    private Button mapa;
     private EditText nombreEvento;
     private EditText mensaEvento;
     private EditText nombrePerson;
     private EditText horaEvento;
-    private boolean isCreation;
-    private Calendar date;
-    TimePickerDialog TPD;
-    Calendar c;
-    DatePickerDialog dpd;
+
+    private EditText mfecha;
+    private EditText mLugar;
+    private TimePickerDialog TPD;
+    private Calendar c;
+    private DatePickerDialog dpd;
 
     private Address address;
     private Button guardar;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            address = (Address) bundle.get("address");
-        }
-        setActivityTitle();
-
         setContentView(R.layout.activity_evento_creando);
+
+        dateEvent = Calendar.getInstance();
+
+
+        stipoevento = getIntent().getStringExtra("tipoEvento");
+        //Toast.makeText(EventoCreando.this, "tipo" + stipoevento, Toast.LENGTH_LONG).show();
 
         References();
         //Instancia un calendario con el día y mes
@@ -75,70 +74,51 @@ public class EventoCreando extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent map = new Intent(EventoCreando.this, ActivityMaps.class);
-                startActivity(map);
-                Bundle parametros = new Bundle();
-                map.putExtras(parametros);
-                sfecha=mfecha.getText().toString();
-                slugar=mLugar.getText().toString();
-                snombreevento=nombreEvento.getText().toString();
-                smensaevento=mensaEvento.getText().toString();
-                snombreperson=nombrePerson.getText().toString();
-                shoraevento=horaEvento.getText().toString();
-
+                startActivityForResult(map, 0);
             }
         });
+
         //guarda los datos introducidos para mostrar en el activity FinaldelEvento
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ver = new Intent(EventoCreando.this, PrincipalActivity.class);
-                ver.putExtra("Info", nombreEvento.getText().toString());
-                ver.putExtra("Info1", mensaEvento.getText().toString());
-                ver.putExtra("Info2", nombrePerson.getText().toString());
-                ver.putExtra("Info3", mfecha.getText().toString());
-                ver.putExtra("Info4", horaEvento.getText().toString());
-                ver.putExtra("Info5", mLugar.getText().toString());
                 if (isValidData()) {
-           //         startActivity(ver);
-                    finish();
-                    Toast.makeText(EventoCreando.this, "Se guardaron los datos con éxito", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(EventoCreando.this, "ingrese datos", Toast.LENGTH_LONG).show();
+                    //guardar en BBDD
 
+                    slugar = mLugar.getText().toString();
+                    snombreevento = nombreEvento.getText().toString();
+                    smensajevento = mensaEvento.getText().toString();
+                    snombreperson = nombrePerson.getText().toString();
+                    Date date = dateEvent.getTime();
+                    Toast.makeText(EventoCreando.this, stipoevento + snombreevento + smensajevento + date.toLocaleString() + snombreperson + slugar, Toast.LENGTH_LONG).show();
+
+                    MailInterface apiServ = ApiUtils.getAPIService();
+                    Call call = apiServ.guardarPost(stipoevento, snombreevento, smensajevento, date, date, snombreperson, slugar, new String[1]);
+                    call.enqueue(new Callback() {
+                        @Override
+                        public void onResponse(Call call, Response response) {
+                            Toast.makeText(EventoCreando.this, response.toString(), Toast.LENGTH_LONG).show();
+
+                        }
+
+                        @Override
+                        public void onFailure(Call call, Throwable t) {
+                            Toast.makeText(EventoCreando.this, t.getMessage(), Toast.LENGTH_LONG).show();
+
+                        }
+                    });
+                } else {
+                    Toast.makeText(EventoCreando.this, "Complete todos los campos", Toast.LENGTH_LONG).show();
                 }
 
             }
         });
 
         //muestra para seleccionar mes, día y año
-        // TODO arreglar fecha
         fecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateTimePicker();
-
-            }
-        });
-        final char[] chars1="ABCDEFGHI0123456789JKLMNÑOPQRSTUVWXYZ".toCharArray();
-        StringBuilder string =new StringBuilder();
-        Random random = new Random();
-
-        for (int i = 0; i<10; i++) {
-            char c = chars1[random.nextInt(chars1.length)+1];
-            string.append(c);
-        }
-        final String ID = chars1.toString();
-        //genera un id para el evento que cree el usuario
-        generar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Random random= new Random();
-                int ID= random.nextInt();
-
-
-
-                idEvento.setText(ID+"");
-
             }
         });
 
@@ -146,13 +126,14 @@ public class EventoCreando extends AppCompatActivity {
         bhora.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 //
                 TPD = new TimePickerDialog(EventoCreando.this, new TimePickerDialog.OnTimeSetListener() {
 
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         horaEvento.setText(hourOfDay + ":" + minute);
+                        dateEvent.set(Calendar.HOUR, hourOfDay);
+                        dateEvent.set(Calendar.MINUTE, minute);
                     }
                 }, hora, minutos, false);
                 TPD.show();
@@ -161,17 +142,18 @@ public class EventoCreando extends AppCompatActivity {
         });
     }
 
-    //Cambia el título si es para crearo editar
-    private void setActivityTitle() {
-        String title = "Crear nuevo evento";
-        if (isCreation) title = "Editar evento";
-        setTitle(title);
-    }
-
     @Override
-    protected void onResume() {
-        super.onResume();
-        if (address != null) mLugar.setText(address.getAddressLine(0));
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                // get String data from Intent
+                String addressIntent = data.getStringExtra("address");
+
+                Toast.makeText(EventoCreando.this, "inte" + addressIntent, Toast.LENGTH_SHORT).show();
+                mLugar.setText(addressIntent);
+            }
+        }
     }
 
     //valida que se haya introducido los datos
@@ -188,38 +170,39 @@ public class EventoCreando extends AppCompatActivity {
         }
     }
 
-    //Declaración de las variables
+    //Declaración de referencias
     private void References() {
-        idEvento=(TextView) findViewById(R.id.codigo);
-        generar=(Button)findViewById(R.id.genera);
-        mfecha = (EditText) findViewById(R.id.mostarfecha);
+        mfecha = (EditText) findViewById(R.id.fechaEvent);
         fecha = (Button) findViewById(R.id.botonFecha);
         mLugar = (EditText) findViewById(R.id.mostarLugar);
         mapa = (Button) findViewById(R.id.irMapa);
-        guardar = (Button) findViewById(R.id.eventCreado);
+        guardar = (Button) findViewById(R.id.btnCrearEvento);
         nombreEvento = (EditText) findViewById(R.id.eventoName);
         mensaEvento = (EditText) findViewById(R.id.eventoMessage);
         nombrePerson = (EditText) findViewById(R.id.personName);
         horaEvento = (EditText) findViewById(R.id.horaEvent);
         bhora = (Button) findViewById(R.id.botonHora);
-        mfecha.setText(sfecha);
+        mfecha.setText(sfechaevento);
         mLugar.setText(slugar);
         nombreEvento.setText(snombreevento);
-        mensaEvento.setText(smensaevento);
+        mensaEvento.setText(smensajevento);
         nombrePerson.setText(snombreperson);
         horaEvento.setText(shoraevento);
     }
 
     public void showDateTimePicker() {
         final Calendar currentDate = Calendar.getInstance();
-        date = Calendar.getInstance();
+        Calendar ahora = Calendar.getInstance();
 
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
-                date.set(year, monthOfYear, dayOfMonth);
+                ahora.set(year, monthOfYear, dayOfMonth);
                 mfecha.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                //use this date as per your requirement
+
+                dateEvent.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                dateEvent.set(Calendar.YEAR, year);
+                dateEvent.set(Calendar.MONTH, monthOfYear);
             }
         };
         DatePickerDialog datePickerDialog = new DatePickerDialog(EventoCreando.this, dateSetListener, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DAY_OF_MONTH));

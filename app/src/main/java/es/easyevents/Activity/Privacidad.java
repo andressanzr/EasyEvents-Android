@@ -22,9 +22,9 @@ public class Privacidad extends AppCompatActivity {
         acep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent condiciones = new Intent(Privacidad.this, Registrar.class);
+                //Intent condiciones = new Intent(Privacidad.this, Registrar.class);
 
-                startActivity(condiciones);
+                //startActivity(condiciones);
             }
         });
     }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
@@ -12,248 +14,255 @@
 
         <ImageView
             android:id="@+id/detalle_imagen"
-            android:layout_width="match_parent"
-            android:layout_height="229dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp"
+            app:srcCompat="@drawable/logorecortado" />
 
         <TextView
             android:id="@+id/detalle_titulo"
             android:layout_width="match_parent"
-            android:textAlignment="center"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:textColor="@color/colorPrimary"
             android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
             android:textSize="35sp"
             android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="4sp"
-            android:gravity="center"
-            android:layout_marginRight="15sp"
             android:layout_marginLeft="15sp"
             android:layout_marginTop="5sp"
+            android:layout_marginRight="15sp"
             android:layout_marginBottom="10sp"
-            android:background="@android:color/black"/>
+            android:background="@android:color/black"
+            android:gravity="center" />
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="-6dp">
+
+            <TextView
+                android:id="@+id/detalle_tipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:text="tipo evento"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/TextTipo"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/TexCodigo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="45sp"
-                android:textColor="@color/colorPrimary"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:text="Código:"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/detalle_codigo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/TexCodigo"
-                android:textColor="#000"
-                android:text="Código: "
-                android:layout_marginLeft="10sp"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/TextFecha"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/detalle_codigo"
                 android:textColor="@color/colorPrimary"
-                android:layout_marginLeft="35sp"
-                android:text="Fecha:"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TextTipo" />
 
             <TextView
                 android:id="@+id/detalle_fecha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/TextFecha"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:text="fecha evento"
                 android:textColor="#000"
-                android:layout_marginLeft="10sp"
-                android:text="Fecha: "
-                android:textSize="20sp"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/TextLugar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/TexCodigo"
-                android:textColor="@color/colorPrimary"
-                android:layout_marginLeft="45sp"
-                android:textAlignment="center"
-                android:text="Lugar:"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:gravity="center_horizontal" />
+                app:layout_constraintStart_toEndOf="@+id/TextFecha"
+                app:layout_constraintTop_toBottomOf="@+id/detalle_codigo" />
+
+            <TextView
+                android:id="@+id/TextFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="Fecha:"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TexCodigo" />
 
             <TextView
                 android:id="@+id/detalle_Lugar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/TextLugar"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:text="lugar evento"
                 android:textColor="#000"
-                android:layout_marginLeft="15sp"
-                android:layout_below="@+id/TexCodigo"
-                android:text="Lugar: "
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/textLugar"
+                app:layout_constraintTop_toBottomOf="@+id/detalle_fecha" />
 
             <TextView
-                android:id="@+id/TextHora"
+                android:id="@+id/textLugar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center_horizontal"
+                android:text="Lugar:"
+                android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
-                android:textAlignment="center"
-                android:layout_marginLeft="70sp"
-                android:layout_toRightOf="@+id/detalle_Lugar"
-                android:layout_below="@+id/TexCodigo"
-                android:text="Hora:"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:gravity="center_horizontal" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TextFecha" />
 
             <TextView
-                android:id="@+id/detalle_Hora"
-                android:textAlignment="center"
+                android:id="@+id/detalle_codigo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/TextHora"
-                android:layout_below="@+id/TexCodigo"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:text="codigo evento"
                 android:textColor="#000"
-                android:layout_marginLeft="10sp"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:text="Hora: "
-                android:gravity="center_horizontal" />
+                app:layout_constraintStart_toEndOf="@+id/TexCodigo"
+                app:layout_constraintTop_toBottomOf="@+id/detalle_tipo" />
 
-        </RelativeLayout>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="20dp" />
+
+            <TextView
+                android:id="@+id/TextTipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_horizontal"
+                android:text="Tipo:"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="3sp"
-            android:gravity="center"
-            android:layout_marginRight="30sp"
             android:layout_marginLeft="30sp"
             android:layout_marginTop="10sp"
+            android:layout_marginRight="30sp"
             android:layout_marginBottom="5sp"
-            android:background="@android:color/black"/>
+            android:background="@android:color/black"
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/TexAnfitrion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Anfitrión"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
-            android:text="Anfitrión"
             android:textSize="25sp"
-            android:textStyle="bold"
-            android:gravity="center_horizontal" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/detalle_Anfitrion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:textAlignment="center"
             android:layout_marginBottom="5sp"
-            android:text="Anfitrión: "
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textColor="#000"
             android:textSize="19sp"
-            android:textStyle="bold"
-            android:gravity="center_horizontal" />
+            android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="3sp"
-            android:gravity="center"
-            android:layout_marginRight="30sp"
             android:layout_marginLeft="30sp"
             android:layout_marginTop="5sp"
-            android:background="@android:color/black"/>
+            android:layout_marginRight="30sp"
+            android:background="@android:color/black"
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/TextDescripcion"
             android:layout_width="match_parent"
-            android:layout_marginTop="5sp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:gravity="center_horizontal"
+            android:text="Descripción"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
-            android:text="Descripción"
             android:textSize="25sp"
-            android:textStyle="bold"
-            android:gravity="center_horizontal" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/detalle_descripcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000"
+            android:layout_marginLeft="15sp"
             android:layout_marginTop="5sp"
+            android:layout_marginRight="15sp"
             android:layout_marginBottom="5sp"
-            android:layout_marginLeft="15sp"
-            android:layout_marginRight="15sp"
+            android:gravity="center_horizontal"
             android:textAlignment="center"
-            android:textStyle="italic"
-            android:textSize="19dp"
-            android:text="Descripción: "
-            android:gravity="center_horizontal" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="4sp"
-            android:gravity="center"
-            android:layout_marginRight="15sp"
-            android:layout_marginLeft="15sp"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="10sp"
-            android:background="@android:color/black"/>
+            android:textColor="#000"
+            android:textSize="18dp"
+            android:textStyle="italic" />
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="359dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15sp"
+            android:layout_marginBottom="0px"
+            android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btn_actualizar"
-                android:layout_width="1dp"
-                android:layout_marginTop="5sp"
-                android:layout_weight="1"
-                android:layout_height="70sp"
-                android:textSize="20sp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="28dp"
-                android:layout_marginRight="28dp"
-                android:layout_marginBottom="10dp"
-                android:textColor="#fffdf9"
-                android:background="@drawable/boton_redondo"
-                android:text="actualizar"/>
+            <TextView
+                android:id="@+id/textCreadoEn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Fecha creado: "
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/TextHora"
+                tools:layout_editor_absoluteX="20dp" />
 
-            <Button
-                android:id="@+id/btn_borrar"
-                android:layout_width="1dp"
-                android:layout_weight="1"
-                android:layout_marginTop="5sp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="28dp"
-                android:layout_marginRight="28dp"
-                android:layout_marginBottom="10dp"
-                android:textColor="#fffdf9"
-                android:layout_height="70sp"
-                android:textSize="20sp"
-                android:background="@drawable/boton_redondo"
-                android:text="borrar"/>
-
+            <TextView
+                android:id="@+id/detalle_fecha_creado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="fecha creado"
+                android:textColor="#000"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/textLugar"
+                app:layout_constraintTop_toBottomOf="@+id/detalle_hora" />
         </LinearLayout>
+
     </LinearLayout>
 </ScrollView>

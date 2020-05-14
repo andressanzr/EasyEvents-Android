@@ -2,14 +2,11 @@ package es.easyevents.Activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.easyevents.Data.ApiUtils;
 import es.easyevents.Data.MailInterface;
-import es.easyevents.Fragments.EventoFragment;
 import es.easyevents.Models.Evento;
 import es.easyevents.R;
 import retrofit2.Call;
@@ -26,24 +23,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.Calendar;
-import java.util.Random;
-
+/*
 public class EventoPOST extends AppCompatActivity implements View.OnClickListener{
-
-    @BindView(R.id.codigo)
-    EditText codigo;
-    @BindView(R.id.imagen)
-    EditText foto;
     @BindView(R.id.eventoName)
     EditText titulo;
     @BindView(R.id.personName)
-    EditText afitrion;
-    @BindView(R.id.mostarfecha)
+    EditText anfitrion;
+    @BindView(R.id.fechaEvent)
     EditText fecha;
     @BindView(R.id.horaEvent)
     EditText hora;
@@ -58,7 +48,7 @@ public class EventoPOST extends AppCompatActivity implements View.OnClickListene
     static String shoraevento;
     static String sfecha;
     static String slugar;
-    @BindView(R.id.eventCreado)
+    @BindView(R.id.btnCrearEvento)
     Button crearEvento;
     private Calendar date;
     TimePickerDialog TPD;
@@ -106,14 +96,10 @@ public class EventoPOST extends AppCompatActivity implements View.OnClickListene
                 slugar=lugar.getText().toString();
                 snombreevento=titulo.getText().toString();
                 smensaevento=descripcion.getText().toString();
-                snombreperson=afitrion.getText().toString();
+                snombreperson=anfitrion.getText().toString();
                 shoraevento=hora.getText().toString();
-
             }
         });
-
-
-
         bhora.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,8 +125,16 @@ public class EventoPOST extends AppCompatActivity implements View.OnClickListene
         });
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(address!=null){lugar.setText(address.getAddressLine(0));}
+    }
+
     @Override
     public void onClick(View view) {
+        /*
         if(!comprobarCampos()){
             Evento evento = new Evento(Integer.parseInt(codigo.getText().toString()),foto.getText().toString(),
                     titulo.getText().toString(),descripcion.getText().toString(),afitrion.getText().toString(),fecha.getText().toString(),
@@ -148,6 +142,8 @@ public class EventoPOST extends AppCompatActivity implements View.OnClickListene
             enviarEvento(evento);
             Log.v("Errores",evento.toString());
         }
+
+
     }
 
     private void enviarEvento(final Evento evento) {
@@ -157,9 +153,7 @@ public class EventoPOST extends AppCompatActivity implements View.OnClickListene
                 if (response.isSuccessful()){
                     Log.i("UI enviarEven", "post submitted to API." + response.body().toString());
                     Toast.makeText(getApplicationContext(), "Evento creado correctamente", Toast.LENGTH_SHORT).show();
-                    Intent intentListar = new Intent(getApplicationContext(), ActivityGet.class);
-                    startActivity(intentListar);
-                    finish();
+
                 }
             }
 
@@ -190,18 +184,10 @@ public class EventoPOST extends AppCompatActivity implements View.OnClickListene
     public boolean comprobarCampos() {
         boolean aux = false;
 
-        if (codigo.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Obligatorio CÓDIGO", Toast.LENGTH_SHORT).show();
-            aux = true;
-        }
+
 
         if (titulo.getText().toString().isEmpty()) {
             Toast.makeText(this, "Obligatorio TÍTULO", Toast.LENGTH_SHORT).show();
-            aux = true;
-        }
-
-        if (afitrion.getText().toString().isEmpty() ) {
-            Toast.makeText(this, "Obligatorio ANFITRIÓN", Toast.LENGTH_SHORT).show();
             aux = true;
         }
 
@@ -218,4 +204,4 @@ public class EventoPOST extends AppCompatActivity implements View.OnClickListene
         return aux;
     }
 
-}
+}*/

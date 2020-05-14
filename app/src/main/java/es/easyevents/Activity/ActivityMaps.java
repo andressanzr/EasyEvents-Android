@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.SearchView;
 
@@ -41,8 +42,6 @@ public class ActivityMaps extends AppCompatActivity implements OnMapReadyCallbac
             Bundle parametros = new Bundle();
             String datos = parametros.getString("datos");
 
-
-
             @Override
             public boolean onQueryTextSubmit(String s) {
                 //recoge los datos introducido en el buscador
@@ -57,6 +56,8 @@ public class ActivityMaps extends AppCompatActivity implements OnMapReadyCallbac
                         addressList = geocoder.getFromLocationName(locacion, 1);
 
                     } catch (IOException e) {
+
+                        Log.d("errorMap", e.getMessage());
                         e.printStackTrace();
                     }
                     if(addressList.size()>0){
@@ -65,8 +66,6 @@ public class ActivityMaps extends AppCompatActivity implements OnMapReadyCallbac
                         map.addMarker(new MarkerOptions().position(latLng).title(locacion));
                         map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
                     }
-
-
                 }
                 return false;
             }
@@ -93,11 +92,12 @@ public class ActivityMaps extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-
-                Intent intent = new Intent(ActivityMaps.this, EventoPOST.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("address", address);
-                startActivity(intent);
+                Intent intent = new Intent(ActivityMaps.this, EventoCreando.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                if (address != null) {
+                    intent.putExtra("address", address.getAddressLine(0));
+                    setResult(RESULT_OK, intent);
+                }
                 finish();
                 return true;
 

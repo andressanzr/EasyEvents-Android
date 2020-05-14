@@ -11,7 +11,6 @@ public class RetrofitClient {
             instance= new Retrofit.Builder()
                     .baseUrl(baseUrl) // In emulator localhost will changed to 10.0.2.2.
                     .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();
         return instance;
     }
