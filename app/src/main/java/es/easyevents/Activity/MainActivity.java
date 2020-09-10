@@ -48,13 +48,11 @@ public class MainActivity extends AppCompatActivity {
                     call.enqueue(new Callback<ServerResponseNode>() {
                         @Override
                         public void onResponse(Call<ServerResponseNode> call, Response<ServerResponseNode> response) {
-                            Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_LONG).show();
                             Evento eventoRes = response.body().getEvento();
 
                             if (response.body().getType().equals("error")) {
                                 Toast.makeText(MainActivity.this, "El ID de evento no existe, introduzca un ID válido", Toast.LENGTH_LONG).show();
                             } else {
-                                Toast.makeText(MainActivity.this, "id" + eventoRes.getPublicIdCode() + " nombre" + eventoRes.getName() + " fecha " + eventoRes.getDate(), Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(MainActivity.this, EventoDetail.class);
                                 intent.putExtra("evento", new Gson().toJson(eventoRes));
                                 startActivity(intent);

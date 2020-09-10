@@ -24,8 +24,6 @@ public class EventoDetail extends AppCompatActivity {
     TextView codigo;
     @BindView(R.id.detalle_Anfitrion)
     TextView anfitrion;
-    @BindView(R.id.detalle_hora)
-    TextView hora;
     @BindView(R.id.detalle_fecha)
     TextView fecha;
     @BindView(R.id.detalle_Lugar)
@@ -51,9 +49,7 @@ public class EventoDetail extends AppCompatActivity {
             tvTitulo.setText(event.getName());
             codigo.setText(event.getPublicIdCode() + "");
             anfitrion.setText(event.getHostName());
-            hora.setText(event.getDate().toString());
             fecha.setText(event.getDate().toLocaleString());
-            hora.setText(event.getDate().getHours() + ":" + event.getDate().getMinutes());
             lugar.setText(event.getPlace());
             descripcion.setText(event.getMessage());
             fechaCreado.setText(event.getDateCreated().toLocaleString());

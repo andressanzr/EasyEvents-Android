@@ -5,6 +5,7 @@ import java.util.Date;
 
 import es.easyevents.Models.Evento;
 import es.easyevents.Models.ServerResponseNode;
+import es.easyevents.Models.ServerResponseNodeEventSave;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -17,7 +18,7 @@ public interface MailInterface {
 
     @FormUrlEncoded
     @POST("event/save")
-    Call<Evento> guardarPost(@Field("type") String tipo, @Field("name") String nombre, @Field("message") String mensaje, @Field("date") Date fecha, @Field("time") Date time, @Field("hostname") String nombreAnfitrion, @Field("place") String lugar, @Field("emailInvitees") String[] emailInvitados);
+    Call<ServerResponseNodeEventSave> guardarPost(@Field("type") String tipo, @Field("name") String nombre, @Field("message") String mensaje, @Field("date") Date fecha, @Field("time") Date time, @Field("hostName") String nombreAnfitrion, @Field("place") String lugar, @Field("emailInvitees") String[] emailInvitados);
 
     @GET("event/{codigo}")
     Call<ServerResponseNode> listarEvento(@Path("codigo") int codigo);

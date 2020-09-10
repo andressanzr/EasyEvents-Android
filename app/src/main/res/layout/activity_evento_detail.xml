@@ -107,6 +107,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:text="lugar evento"
+                android:singleLine="false"
                 android:textColor="#000"
                 android:textSize="20sp"
                 android:textStyle="bold"

@@ -9,8 +9,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -18,6 +21,9 @@ import java.util.Date;
 import androidx.appcompat.app.AppCompatActivity;
 import es.easyevents.Data.ApiUtils;
 import es.easyevents.Data.MailInterface;
+import es.easyevents.Models.Evento;
+import es.easyevents.Models.ServerResponseNode;
+import es.easyevents.Models.ServerResponseNodeEventSave;
 import es.easyevents.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,8 +34,6 @@ public class EventoCreando extends AppCompatActivity {
     private String snombreevento;
     private String smensajevento;
     private String snombreperson;
-    private String sfechaevento;
-    private String shoraevento;
     private String slugar;
     private Calendar dateEvent;
 
@@ -40,6 +44,8 @@ public class EventoCreando extends AppCompatActivity {
     private EditText mensaEvento;
     private EditText nombrePerson;
     private EditText horaEvento;
+
+    private TextView btnPrivacidad;
 
     private EditText mfecha;
     private EditText mLugar;
@@ -56,8 +62,6 @@ public class EventoCreando extends AppCompatActivity {
         setContentView(R.layout.activity_evento_creando);
 
         dateEvent = Calendar.getInstance();
-
-
         stipoevento = getIntent().getStringExtra("tipoEvento");
         //Toast.makeText(EventoCreando.this, "tipo" + stipoevento, Toast.LENGTH_LONG).show();
 
@@ -69,6 +73,7 @@ public class EventoCreando extends AppCompatActivity {
         final int anno = c.get(Calendar.YEAR);
         final int hora = c.get(Calendar.HOUR_OF_DAY);
         final int minutos = c.get(Calendar.MINUTE);
+
         //muestra el mapa en el activitymaps
         mapa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,41 +83,70 @@ public class EventoCreando extends AppCompatActivity {
             }
         });
 
-        //guarda los datos introducidos para mostrar en el activity FinaldelEvento
+        btnPrivacidad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EventoCreando.this, Privacidad.class);
+                startActivity(intent);
+            }
+        });
+
+        // saves the event
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isValidData()) {
                     //guardar en BBDD
-
                     slugar = mLugar.getText().toString();
                     snombreevento = nombreEvento.getText().toString();
                     smensajevento = mensaEvento.getText().toString();
                     snombreperson = nombrePerson.getText().toString();
                     Date date = dateEvent.getTime();
-                    Toast.makeText(EventoCreando.this, stipoevento + snombreevento + smensajevento + date.toLocaleString() + snombreperson + slugar, Toast.LENGTH_LONG).show();
 
                     MailInterface apiServ = ApiUtils.getAPIService();
-                    Call call = apiServ.guardarPost(stipoevento, snombreevento, smensajevento, date, date, snombreperson, slugar, new String[1]);
-                    call.enqueue(new Callback() {
+                    // POST guarda evento en BBDD
+                    Call<ServerResponseNodeEventSave> call = apiServ.guardarPost(stipoevento, snombreevento, smensajevento, date, date, snombreperson, slugar, new String[1]);
+                    call.enqueue(new Callback<ServerResponseNodeEventSave>() {
                         @Override
-                        public void onResponse(Call call, Response response) {
-                            Toast.makeText(EventoCreando.this, response.toString(), Toast.LENGTH_LONG).show();
+                        public void onResponse(Call<ServerResponseNodeEventSave> call, Response<ServerResponseNodeEventSave> response) {
+                            if (response.body().getType().equals("success")) {
+                                MailInterface apiServ = ApiUtils.getAPIService();
+                                int publicIDCode = response.body().getPublicIdCode();
+                                // GET coge los datos del evento guardado ahora
+                                Call<ServerResponseNode> callEventInfo = apiServ.listarEvento(publicIDCode);
+                                callEventInfo.enqueue(new Callback<ServerResponseNode>() {
+                                    @Override
+                                    public void onResponse(Call<ServerResponseNode> call, Response<ServerResponseNode> response) {
+                                        Evento eventoRes = response.body().getEvento();
+                                        if (response.body().getType().equals("success")) {
+                                            {
+                                                //Toast.makeText(EventoCreando.this, "id" + eventoRes.getPublicIdCode() + " nombre" + eventoRes.getName() + " fecha " + eventoRes.getDate(), Toast.LENGTH_LONG).show();
+                                                Intent intent = new Intent(EventoCreando.this, EventoDetail.class);
+                                                intent.putExtra("evento", new Gson().toJson(eventoRes));
+                                                startActivity(intent);
+                                            }
+                                        }
+                                    }
 
+                                    @Override
+                                    public void onFailure(Call<ServerResponseNode> call, Throwable t) {
+
+                                    }
+                                });
+                            }
                         }
 
                         @Override
-                        public void onFailure(Call call, Throwable t) {
-                            Toast.makeText(EventoCreando.this, t.getMessage(), Toast.LENGTH_LONG).show();
-
+                        public void onFailure(Call<ServerResponseNodeEventSave> call, Throwable t) {
+                            Toast.makeText(EventoCreando.this, "Error al guardar el evento", Toast.LENGTH_LONG).show();
                         }
                     });
                 } else {
                     Toast.makeText(EventoCreando.this, "Complete todos los campos", Toast.LENGTH_LONG).show();
                 }
-
             }
         });
+
 
         //muestra para seleccionar mes, día y año
         fecha.setOnClickListener(new View.OnClickListener() {
@@ -150,7 +184,7 @@ public class EventoCreando extends AppCompatActivity {
                 // get String data from Intent
                 String addressIntent = data.getStringExtra("address");
 
-                Toast.makeText(EventoCreando.this, "inte" + addressIntent, Toast.LENGTH_SHORT).show();
+
                 mLugar.setText(addressIntent);
             }
         }
@@ -169,7 +203,6 @@ public class EventoCreando extends AppCompatActivity {
             return false;
         }
     }
-
     //Declaración de referencias
     private void References() {
         mfecha = (EditText) findViewById(R.id.fechaEvent);
@@ -182,12 +215,11 @@ public class EventoCreando extends AppCompatActivity {
         nombrePerson = (EditText) findViewById(R.id.personName);
         horaEvento = (EditText) findViewById(R.id.horaEvent);
         bhora = (Button) findViewById(R.id.botonHora);
-        mfecha.setText(sfechaevento);
+        btnPrivacidad = findViewById(R.id.btnPrivacidad);
         mLugar.setText(slugar);
         nombreEvento.setText(snombreevento);
         mensaEvento.setText(smensajevento);
         nombrePerson.setText(snombreperson);
-        horaEvento.setText(shoraevento);
     }
 
     public void showDateTimePicker() {

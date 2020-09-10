@@ -24,6 +24,7 @@ public class CrearEvento extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_evento);
+
         //Lista con los diferentes tipos de eventos que tiene la aplicación
         listaTiposEventoFotos = new ArrayList<>();
         listaTiposEventoFotos.add(new TiposEventoFoto("Cumpleaños", R.drawable.fiestasinfantil));
@@ -31,6 +32,7 @@ public class CrearEvento extends AppCompatActivity {
         listaTiposEventoFotos.add(new TiposEventoFoto("Despedida de soltero", R.drawable.despedidasoltero));
         listaTiposEventoFotos.add(new TiposEventoFoto("Fiesta", R.drawable.fiestayoung));
         listaTiposEventoFotos.add(new TiposEventoFoto("Baby Shower", R.drawable.babyshower));
+
         //grid donde se almacenará las imagenes
         gridView = (GridView) findViewById(R.id.gridlayout);
         Adaptador adaptador = new Adaptador(this.getApplicationContext(), listaTiposEventoFotos);

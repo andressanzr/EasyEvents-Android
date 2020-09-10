@@ -39,9 +39,6 @@ public class ActivityMaps extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapa);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
-            Bundle parametros = new Bundle();
-            String datos = parametros.getString("datos");
-
             @Override
             public boolean onQueryTextSubmit(String s) {
                 //recoge los datos introducido en el buscador
@@ -53,8 +50,7 @@ public class ActivityMaps extends AppCompatActivity implements OnMapReadyCallbac
                 if (locacion != null || !locacion.equals("")) {
                     Geocoder geocoder = new Geocoder(ActivityMaps.this);
                     try {
-                        addressList = geocoder.getFromLocationName(locacion, 1);
-
+                        addressList = geocoder.getFromLocationName(locacion, 5);
                     } catch (IOException e) {
 
                         Log.d("errorMap", e.getMessage());
